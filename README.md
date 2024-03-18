@@ -19,7 +19,7 @@ the chapter bellow for a full setup guide.
 
 ```terraform
 module "landing_zone" {
-  source = "https://github.com/neckhair/aws-plz.git"
+  source = "github.com/neckhair/aws-plz"
 
   username = "sam"
 
@@ -69,7 +69,7 @@ provider "aws" {
 
 # main.tf
 module "landing_zone" {
-   source = "https://github.com/neckhair/aws-plz.git"
+   source = "github.com/neckhair/aws-plz"
 
    # change these values to your personal taste
    username = "jimmy"
