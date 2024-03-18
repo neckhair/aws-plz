@@ -64,12 +64,7 @@ files.
 
 ```terraform
 # provider.tf
-terraform {
-  required_providers {
-    aws = {
-      source = "hashicorp/aws"
-    }
-  }
+provider "aws" {
 }
 
 # main.tf
