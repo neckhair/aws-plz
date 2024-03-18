@@ -15,7 +15,13 @@ output "password" {
   description = "The main user's password for the AWS Management Console."
 }
 
-output "account_id" {
-  value       = aws_organizations_organization.root.master_account_id
-  description = "The ID of the master account."
+output "accounts" {
+  value = {
+    for account in module.accounts :
+    account.name => {
+      "id"       = account.account_id,
+      "role_arn" = account.role_arn,
+    }
+  }
+  description = "IDs of the sub accounts."
 }

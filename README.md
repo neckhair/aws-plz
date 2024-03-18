@@ -12,6 +12,27 @@ For example, we use static secrets for our own access to the API and we store th
 in a local file. This is to keep the setup small and simple to use. As always, be careful where you
 store your secrets.
 
+## Example
+
+Before you can use this example, you need to have access to an - perferably new - AWS account. See
+the chapter bellow for a full setup guide.
+
+```terraform
+module "landing_zone" {
+  source = "https://github.com/neckhair/aws-plz.git"
+
+  username = "sam"
+
+  accounts = {
+    mysandbox01 = {
+      name              = "Sandbox 01"
+      email             = "sam+sandbox01@example.com"
+      close_on_deletion = true
+    }
+  }
+}
+```
+
 ## Bootstraping your landing zone
 
 This guide assumes you are familiar with the AWS CLI and Terraform and have both tools installed.
@@ -101,7 +122,7 @@ Now we need to do some cleanup and get ready to actually use our new repo:
 
 1. Delete the access key in your root account. It's not needed anymore and it's safer to get rid of
    it immediately.
-1. Log in with your new User and change the password. Get the initial one from the Terraform state:
+1. Log in with your new user. Get the password from the Terraform state:
 
    ```sh
    terraform output -json | jq .password.value

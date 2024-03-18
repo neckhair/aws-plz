@@ -2,7 +2,7 @@ data "aws_iam_policy_document" "sub_account_access" {
   statement {
     actions   = ["sts:AssumeRole"]
     effect    = "Allow"
-    resources = [for account in aws_organizations_organization.root.non_master_accounts : "arn:aws:iam::${account.id}:role/OrganizationAccountAccessRole"]
+    resources = [for account in module.accounts : account.role_arn]
   }
 }
 resource "aws_iam_policy" "sub_account_access" {
